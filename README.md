@@ -1,13 +1,21 @@
-Use this guide to install PSO on your Kubernetes (K8's) Cluster
+# Install PSO on your Kubernetes (K8's) Cluster
 
-###Clone the Helm Chart
+This guild will help you install and test PSO in your K8's cluster
+
+## Prerequisites
+
+- A working K8's cluster with no firewall's blocking ports 
+- your api key and mgmt url for Pure Array (nfs mount point for flashblade)
+
+
+### Clone the Helm Chart
 Youll need the repo to get the latest values.yaml for your deployment
 
 ```
 git clone https://github.com/purestorage/helm-charts.git
 ```
 
-###Install the latest Helm
+### Install the latest Helm
 You need to download and install the latest version
 
 ```
@@ -17,7 +25,7 @@ cd linux-amd64
 sudo cp helm /usr/local/bin
 ```
 
-###Add the Pure Helm Charts and update your repo
+### Add the Pure Helm Charts and update your repo
 
 ```
 helm repo add pure https://purestorage.github.io/helm-charts
@@ -34,7 +42,7 @@ pure/pure-csi	1.2.0        	1.2.0      	A Helm chart for Pure Service Orchestrat
 ```
 
 
-###Install PSO 
+### Install PSO 
 add your Pure values to the values file
 
 ```
@@ -55,7 +63,7 @@ Create a namespace for Pure
 kubectl create namespace flashy
 ```
 
-###Install PSO with Helm
+### Install PSO with Helm
 
 ```
 helm install pure-storage-driver pure/pure-csi -n flashy -f values.yaml
@@ -68,7 +76,7 @@ REVISION: 1
 TEST SUITE: None
 ```
 
-###Smoke Test
+### Smoke Test
 Lets perform a smoke test to validate functionality
 
 ```
@@ -147,7 +155,12 @@ You can open a browser to point to that url and you should see a wordpress setup
 http://10.226.226.18:31741
 ```
 
-###Remove PSO
+### Remove PSO
 You can remove using the following command 
 ```
 helm del pure-storage-driver -n flashy
+
+
+Authors
+
+* **Andy Parsons** - - [opslounge](https://github.com/opslounge)
